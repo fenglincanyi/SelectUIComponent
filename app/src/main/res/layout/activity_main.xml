@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gjr.selectuicomponent.MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="多选"
+        android:textColor="#333333"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/rg_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="选择结果："
+        android:textColor="#88ff0000"
+        android:textSize="18sp" />
+
+    <com.gjr.selectuicomponent.SelectMultiCheckGroup
+        android:id="@+id/checkGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:column="4"
+        app:row="2" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="单选"
+        android:textColor="#333333"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/rg1_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="选择结果："
+        android:textColor="#88ff0000"
+        android:textSize="18sp" />
+
+    <com.gjr.selectuicomponent.SelectMultiCheckGroup
+        android:id="@+id/checkGroup1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:column="4"
+        app:isSingleSelected="true"
+        app:row="3" />
+
+</LinearLayout>

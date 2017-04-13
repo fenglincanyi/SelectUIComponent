@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SelectMultiCheckGroup">
+        <!-- 单选还是多选-->
+        <attr name="isSingleSelected" format="boolean" />
+        <!-- 列 -->
+        <attr name="column" format="integer" />
+        <!-- 行 -->
+        <attr name="row" format="integer" />
+        <!-- item 之间的水平间距 -->
+        <attr name="item_horizontal_space" format="dimension" />
+        <!-- item 之间的垂直间距 -->
+        <attr name="item_vertical_space" format="dimension" />
+        <!-- item 中的水平内边距 -->
+        <attr name="item_horizontal_padding" format="dimension" />
+        <!-- item 中的垂直内边距 -->
+        <attr name="item_vertical_padding" format="dimension" />
+        <!-- item 字体大小 -->
+        <attr name="item_text_size" format="integer" />
+    </declare-styleable>
+</resources>
