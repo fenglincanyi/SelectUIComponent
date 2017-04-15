@@ -21,7 +21,7 @@ import java.util.List;
  * Created by geng
  * on 2017/4/13.
  * <p>
- * 用于筛选器，点击选择
+ * 用于筛选器，点击选择, 样式 见C端搜索页筛选器
  */
 public class SelectMultiCheckGroup extends LinearLayout {
 
@@ -212,7 +212,9 @@ public class SelectMultiCheckGroup extends LinearLayout {
     private void setData() {
         if (isSingleSelected) {
             if (mData.size() < radioButtonList.size()) {
-                for (int i = mData.size(); i < radioButtonList.size(); i++) {
+                int cout1 = mData.size()-1;
+                int cout2 = radioButtonList.size()-1;
+                for (int i = cout2; i > cout1; i--) {
                     radioButtonList.get(i).setVisibility(INVISIBLE);
                     radioButtonList.remove(i);
                 }
@@ -222,7 +224,9 @@ public class SelectMultiCheckGroup extends LinearLayout {
             }
         } else {
             if (mData.size() < checkBoxList.size()) {
-                for (int i = mData.size(); i < checkBoxList.size(); i++) {
+                int cout1 = mData.size()-1;
+                int cout2 = checkBoxList.size()-1;
+                for (int i = cout2; i > cout1; i--) {
                     checkBoxList.get(i).setVisibility(INVISIBLE);
                     checkBoxList.remove(i);
                 }
@@ -232,7 +236,6 @@ public class SelectMultiCheckGroup extends LinearLayout {
             }
         }
         setSeleted(0);
-        mSelected = 0;
     }
 
     /**
@@ -265,10 +268,11 @@ public class SelectMultiCheckGroup extends LinearLayout {
         if (position<0 || position>=mData.size()) {
             return;
         }
+        mSelected = position;
         if (isSingleSelected) {
             radioButtonList.get(position).setChecked(true);
         } else {
-            checkBoxList.get(position).setChecked(true);
+            checkBoxList.get(position).setChecked(true);// 监听里会自动计算 mSelectedList 的变化
         }
     }
 
@@ -278,7 +282,7 @@ public class SelectMultiCheckGroup extends LinearLayout {
     }
 
 
-    interface OnItemSelectedListener {
+    public interface OnItemSelectedListener {
         void checked(View view, int position, boolean isChecked);
     }
 
