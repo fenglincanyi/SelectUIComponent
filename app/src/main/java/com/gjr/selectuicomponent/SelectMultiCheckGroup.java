@@ -198,7 +198,7 @@ public class SelectMultiCheckGroup extends LinearLayout {
     public void initData(List<String> data) {
         if (data == null || data.isEmpty()
                 || data.size() > ((isSingleSelected) ? radioButtonList.size() : checkBoxList.size())) {
-            throw new RuntimeException("setData() 参数不合法");
+            throw new IllegalArgumentException("setData() 参数不合法");
         }
         mData = new ArrayList<>();
         mData.addAll(data);
@@ -245,7 +245,7 @@ public class SelectMultiCheckGroup extends LinearLayout {
         if (isSingleSelected) {
             return mSelected;
         } else {
-            throw new RuntimeException("针对单选使用，app:isSingleSelected=\"true\"");
+            throw new IllegalStateException("针对单选使用，app:isSingleSelected=\"true\"");
         }
     }
 
@@ -254,7 +254,7 @@ public class SelectMultiCheckGroup extends LinearLayout {
      */
     public List<Integer> getSelectedAll() {
         if (isSingleSelected) {
-            throw new RuntimeException("针对多选使用，app:isSingleSelected=\"false\"");
+            throw new IllegalStateException("针对多选使用，app:isSingleSelected=\"false\"");
         } else {
             return mSelectedList;
         }
