@@ -132,9 +132,9 @@ public class SelectMultiCheckGroup extends LinearLayout {
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                             if (isChecked) {// 再次点击已经处于选中状态的radiobutton，本身就不会进行监听回调的
                                 mSelected = finalI * column + finalJ;
-                                for (int k=0; k< row; k++) {
+                                for (int k = 0; k < row; k++) {
                                     if (radioButtonList.get(mSelected).getParent() != getChildAt(k)) {
-                                        ((RadioGroup)getChildAt(k)).clearCheck();
+                                        ((RadioGroup) getChildAt(k)).clearCheck();
                                     }
                                 }
                                 if (listener != null) {
@@ -167,11 +167,16 @@ public class SelectMultiCheckGroup extends LinearLayout {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                             mSelected = finalI * column + finalJ;
-                            if (mSelectedList.contains(mSelected)) {
-                                mSelectedList.remove(mSelectedList.indexOf(mSelected));
+                            if (isChecked) {
+                                if (!mSelectedList.contains(mSelected)) {
+                                    mSelectedList.add(mSelected);
+                                }
                             } else {
-                                mSelectedList.add(mSelected);
+                                if (mSelectedList.contains(mSelected)) {
+                                    mSelectedList.remove(mSelectedList.indexOf(mSelected));
+                                }
                             }
+
                             if (listener != null) {
                                 listener.checked(buttonView, mSelected, isChecked);
                             }
@@ -212,8 +217,8 @@ public class SelectMultiCheckGroup extends LinearLayout {
     private void setData() {
         if (isSingleSelected) {
             if (mData.size() < radioButtonList.size()) {
-                int cout1 = mData.size()-1;
-                int cout2 = radioButtonList.size()-1;
+                int cout1 = mData.size() - 1;
+                int cout2 = radioButtonList.size() - 1;
                 for (int i = cout2; i > cout1; i--) {
                     radioButtonList.get(i).setVisibility(INVISIBLE);
                     radioButtonList.remove(i);
@@ -224,8 +229,8 @@ public class SelectMultiCheckGroup extends LinearLayout {
             }
         } else {
             if (mData.size() < checkBoxList.size()) {
-                int cout1 = mData.size()-1;
-                int cout2 = checkBoxList.size()-1;
+                int cout1 = mData.size() - 1;
+                int cout2 = checkBoxList.size() - 1;
                 for (int i = cout2; i > cout1; i--) {
                     checkBoxList.get(i).setVisibility(INVISIBLE);
                     checkBoxList.remove(i);
@@ -261,11 +266,23 @@ public class SelectMultiCheckGroup extends LinearLayout {
     }
 
     /**
+     * 针对 多选 使用
+     */
+    public List<CheckBox> getSelectedAllView() {
+        return checkBoxList;
+    }
+
+    public int getDataSize() {
+        return mData == null ? 0 : mData.size();
+    }
+
+    /**
      * 选择某个
+     *
      * @param position position
      */
     public void setSeleted(int position) {
-        if (position<0 || position>=mData.size()) {
+        if (position < 0 || position >= mData.size()) {
             return;
         }
         mSelected = position;
@@ -276,6 +293,17 @@ public class SelectMultiCheckGroup extends LinearLayout {
         }
     }
 
+    /**
+     * 重置选择，选中第一个,其他不选中
+     */
+    public void resetSelect() {
+        if (!isSingleSelected) {
+            for (int i = 1; i < checkBoxList.size(); i++) {
+                checkBoxList.get(i).setChecked(false);
+            }
+        }
+        setSeleted(0);
+    }
 
     public void setOnItemSelectedListener(OnItemSelectedListener listener) {
         this.listener = listener;
