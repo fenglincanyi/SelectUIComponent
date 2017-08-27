@@ -9,4 +9,4 @@
 
 功能示例：
 
-![](ScreenShot/device-2017-04-14-002906.gif){: width="100px" height="100px"} 
+<img src="ScreenShot/device-2017-04-14-002906.gif" width="320" height="480" />
